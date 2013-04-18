@@ -1,0 +1,8 @@
+Install Homebrew if you haven't
+
+brew install node
+curl https://npmjs.org/install.sh | sh
+npm install -g grunt-cli grunt-init grunt-init-gruntfile
+
+
+# grunt-contrib-jshint grunt-contrib-watch
