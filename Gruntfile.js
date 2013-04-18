@@ -4,11 +4,8 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
     clean: ["build"],
     concat: {
-      options: {
-        separator: ';'
-      },
       dist: {
-        src: ['src/main.js', 'src/util.js'],
+        src: ['src/js/main.js', 'src/js/util.js'],
         dest: 'build/js/app.js'
       }
     },
