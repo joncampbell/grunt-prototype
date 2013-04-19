@@ -1,24 +1,27 @@
-<?xml version="1.0"  encoding="ISO-8859-1"?>
-<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.eclipse.org/configure.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
 
-<Configure class="org.eclipse.jetty.server.handler.ContextHandler">
-  <Set name="handler">
-    <New id="Handlers" class="org.eclipse.jetty.server.handler.HandlerCollection">
-      <Set name="handlers">
-        <Array type="org.eclipse.jetty.server.Handler">
-          <Item>
-            <New class="org.eclipse.jetty.server.handler.ContextHandler">
-              <Set name="contextPath">/</Set>
-              <Set name="handler">
-                <New class="org.eclipse.jetty.server.handler.ResourceHandler">
-                  <Set name="directoriesListed">true</Set>
-                  <Set name="resourceBase">../../</Set>
-                </New>
-              </Set>
+<!-- =============================================================== -->
+<!-- Configure the Jetty Request Log                                 -->
+<!-- =============================================================== -->
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+  <!-- =========================================================== -->
+  <!-- Configure Request Log -->
+  <!-- =========================================================== -->
+  <Ref refid="Handlers">
+    <Call name="addHandler">
+      <Arg>
+        <New class="org.eclipse.jetty.server.handler.ContextHandler">
+          <Set name="contextPath">/</Set>
+          <Set name="handler">
+            <New class="org.eclipse.jetty.server.handler.ResourceHandler">
+              <Set name="directoriesListed">true</Set>
+              <Set name="resourceBase">/Users/jcampbell/dev/rg/grunt-prototype/build/</Set>
             </New>
-          </Item>
-        </Array>
-      </Set>
-    </New>
-  </Set>
+          </Set>
+        </New>
+      </Arg>
+    </Call>
+  </Ref>
 </Configure>

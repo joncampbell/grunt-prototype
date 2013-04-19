@@ -35,6 +35,17 @@ module.exports = function (grunt) {
         }
       }
     },
+    shell: {
+      jetty: {
+        command: 'java -jar start.jar ../../jetty-static.xml',
+        options: {
+          stdout: true,
+          execOptions: {
+            cwd: 'lib/jetty-9.0.2'
+          }
+        }
+      }
+    },
     copy: {
       main: {
         files: [
@@ -47,6 +58,10 @@ module.exports = function (grunt) {
       connect_and_watch: {
         grunt: true,
         tasks: ['watch', 'connect']
+      },
+      jetty_and_watch: {
+        grunt: true,
+        tasks: ['watch', 'shell:jetty']
       }
     }
   });
@@ -60,12 +75,14 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-parallel');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Tasks
   grunt.registerTask('default', 'build');
   grunt.registerTask('build', ['clean', 'rebuild']);
   grunt.registerTask('rebuild', ['copy:main', 'concat', 'uglify']);
   grunt.registerTask('server', ['build', 'parallel:connect_and_watch']);
+  grunt.registerTask('server-jetty', ['build', 'parallel:jetty_and_watch']);
 
   // Custom Tasks
 
